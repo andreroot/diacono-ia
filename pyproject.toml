@@ -1,0 +1,14 @@
+[project]
+name = "categoriza-transacoes"
+version = "0.1.0"
+description = "Lib para extrair e categorizar transações"
+authors = [{name = "Andre"}]
+dependencies = [
+    "pydantic",
+    "langchain",
+    "openai"
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
