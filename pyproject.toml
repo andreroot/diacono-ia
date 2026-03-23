@@ -1,7 +1,7 @@
 [project]
-name = "categoriza-transacoes"
+name = "diacono-ia"
 version = "0.1.0"
-description = "Lib para extrair e categorizar transações"
+description = "Lib para auxiliar na categorização de custos nas transações debito e credito"
 authors = [{name = "Andre"}]
 dependencies = [
     "pydantic",
