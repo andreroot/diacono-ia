@@ -1,14 +1,27 @@
 [project]
 name = "diacono-ia"
-version = "0.1.1"
+version = "0.1.3"
 description = "Lib para auxiliar na categorização de custos nas transações debito e credito"
 authors = [{name = "Andre"}]
 dependencies = [
+    "boto3",
     "pydantic",
     "langchain",
-    "openai"
+    "langchain-openai",
+    "openai",
+    "python-dotenv"
 ]
 
 [build-system]
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+diacono_categ = ["resource/*.json"]

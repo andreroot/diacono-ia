@@ -1,23 +1,19 @@
 
-import os
-import json
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.output_parsers import StrOutputParser
 from diacono_categ.schemas import Transacao
 from dotenv import load_dotenv
 from diacono_categ.extractor import extrair_nome
+from diacono_categ.get_file_s3 import load_json_config
 
 load_dotenv()
 
-# Caminho absoluto para o depara.json
-DEPARA_PATH = os.path.join(os.path.dirname(__file__), 'lista_categorias.json')
-REGRAS_PATH = os.path.join(os.path.dirname(__file__), 'regras_categorias.json')
+LISTA_CATEGORIAS_FILE = 'lista_categorias.json'
+REGRAS_CATEGORIAS_FILE = 'regras_categorias.json'
 
 def consultar_regras(texto):
     try:
-        with open(REGRAS_PATH, 'r', encoding='utf-8') as f:
-            regras = json.load(f)
+        regras = load_json_config(REGRAS_CATEGORIAS_FILE)
         for chave, categoria in regras.items():
             if chave.lower() in texto.lower():
                 return categoria
@@ -26,8 +22,7 @@ def consultar_regras(texto):
     return None
     
 def carregar_categorias():
-    with open(DEPARA_PATH, 'r', encoding='utf-8') as f:
-        data = json.load(f)
+    data = load_json_config(LISTA_CATEGORIAS_FILE)
     return data.get('tipo_custo', [])
 
 def load_prompt(categorias):
