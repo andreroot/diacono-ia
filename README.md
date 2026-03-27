@@ -5,7 +5,8 @@ Primeiro lib usando recursos IA - openia
 - diacono-categ: recebe um texto e categoriza uma tipagem, que sera alimentada com uma listagem de categoria.
 
 instalação do pacote: 
-> pip install git+https://github.com/andreroot/diacono-ia.git
+```pip install git+https://github.com/andreroot/diacono-ia.git
+```
 
 python-test:
 ```
@@ -30,3 +31,29 @@ Alimentado via json - listagem de categorias
 Aplicação de regras de exceção via json - regras de categorias add novas regras
 
 * mudar a forma de incluir novas regras
+
+
+Configuração via S3:
+
+1. Defina `OPENAI_API_KEY` no `.env`.
+2. Para baixar os JSON de configuração do S3 em tempo de execução, defina:
+
+```env
+DIACONO_CONFIG_SOURCE=s3
+DIACONO_S3_BUCKET=medalion-cust
+DIACONO_S3_PREFIX=diacono_ia/resource
+AWS_REGION=us-east-1
+```
+
+Os arquivos esperados no bucket são:
+
+- `lista_categorias.json`
+- `regras_categorias.json`
+
+Se `DIACONO_CONFIG_SOURCE` não for definido, a biblioteca tenta usar o S3 quando `DIACONO_S3_BUCKET` estiver configurado. Se o download falhar, ela usa os arquivos locais empacotados em `resource/` como fallback.
+
+Os arquivos baixados ficam em cache em `~/.cache/diacono-ia/`. Para mudar esse diretório, use `DIACONO_CONFIG_CACHE_DIR`.
+
+copair arquivos para S3:
+```aws s3 cp src/diacono_categ/resource/ s3://medalion-cust/diacono_ia/resource/ --recursive --exclude "*" --include "*.json"
+```
