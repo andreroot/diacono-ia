@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: diacono-ia
+Version: 0.1.3
+Summary: Lib para auxiliar na categorização de custos nas transações debito e credito
+Author: Andre
+Requires-Dist: boto3
+Requires-Dist: pydantic
+Requires-Dist: langchain
+Requires-Dist: langchain-openai
+Requires-Dist: openai
+Requires-Dist: python-dotenv

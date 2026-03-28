@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any
 
 
-DEFAULT_CACHE_DIR = Path(__file__).resolve().parent / ".cache" / "diacono-ia"
+DEFAULT_CACHE_DIR = Path.home() / ".cache" / "diacono-ia"
 DEFAULT_LOCAL_RESOURCE_DIR = Path(__file__).resolve().parent / "resource"
 
 

@@ -1,0 +1,6 @@
+boto3
+pydantic
+langchain
+langchain-openai
+openai
+python-dotenv
