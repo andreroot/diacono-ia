@@ -57,3 +57,14 @@ Os arquivos baixados ficam em cache em `~/.cache/diacono-ia/`. Para mudar esse d
 copair arquivos para S3:
 ```aws s3 cp src/diacono_categ/resource/ s3://medalion-cust/diacono_ia/resource/ --recursive --exclude "*" --include "*.json"
 ```
+
+para criar no container pacote diacono-categ
+    RUN pip install --upgrade pip setuptools wheel
+    RUN pip install git+https://github.com/andreroot/diacono-ia.git
+
+execução via container
+    sudo docker run -it -p 80:80 --env-file .env raw-my-cust:latest /bin/bash
+
+testar paocte 
+    pip install build
+    python -m build

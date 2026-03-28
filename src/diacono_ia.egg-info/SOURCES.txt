@@ -1,0 +1,16 @@
+README.md
+pyproject.toml
+src/diacono_categ/__init__.py
+src/diacono_categ/agent.py
+src/diacono_categ/classifier.py
+src/diacono_categ/extractor.py
+src/diacono_categ/get_file_s3.py
+src/diacono_categ/schemas.py
+src/diacono_categ/resource/lista_categorias.json
+src/diacono_categ/resource/regras_categorias.json
+src/diacono_ia.egg-info/PKG-INFO
+src/diacono_ia.egg-info/SOURCES.txt
+src/diacono_ia.egg-info/dependency_links.txt
+src/diacono_ia.egg-info/requires.txt
+src/diacono_ia.egg-info/top_level.txt
+tests/test_get_file_s3.py
