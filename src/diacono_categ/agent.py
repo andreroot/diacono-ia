@@ -40,7 +40,7 @@ def load_prompt(categorias):
 
     Transação: {{texto}}
 
-    Responda apenas com o nome da categoria, mas, caso não se encaixe, retorne '' equivalente a Nulo.
+    Responda apenas com o nome da categoria, mas, caso não se encaixe, retorne algum tipo de categoria equivalente ao texto extraido.
     """
     prompt = ChatPromptTemplate.from_template(prompt)
     return prompt
