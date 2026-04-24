@@ -50,11 +50,13 @@ Os arquivos esperados no bucket são:
 - `lista_categorias.json`
 - `regras_categorias.json`
 
+o arquivo `regras_categorias.json` é o mais importante pois cada tipo de custo não categorizado, posso incluir no arquivo uma regra espeficica para o tipo e obter a categoria do tipo na classificação do custo.
+
 Se `DIACONO_CONFIG_SOURCE` não for definido, a biblioteca tenta usar o S3 quando `DIACONO_S3_BUCKET` estiver configurado. Se o download falhar, ela usa os arquivos locais empacotados em `resource/` como fallback.
 
 Os arquivos baixados ficam em cache em `~/.cache/diacono-ia/`. Para mudar esse diretório, use `DIACONO_CONFIG_CACHE_DIR`.
 
-copair arquivos para S3:
+copiar arquivos para S3:
 ```aws s3 cp src/diacono_categ/resource/ s3://medalion-cust/diacono_ia/resource/ --recursive --exclude "*" --include "*.json"
 ```
 
