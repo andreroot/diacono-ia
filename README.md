@@ -50,14 +50,40 @@ Os arquivos esperados no bucket são:
 - `lista_categorias.json`
 - `regras_categorias.json`
 
-o arquivo `regras_categorias.json` é o mais importante pois cada tipo de custo não categorizado, posso incluir no arquivo uma regra espeficica para o tipo e obter a categoria do tipo na classificação do custo.
+---
+
+### 📌 `regras_categorias.json` — Regras de Exceção
+
+Este é o arquivo mais importante para customização da categorização. Ele funciona como um dicionário de regras fixas: quando o nome extraído da transação contém uma das chaves definidas, a categoria correspondente é aplicada diretamente, **sem passar pelo modelo de IA**.
+
+**Formato:**
+```json
+{
+  "FDI Fernao D": "gasolina",
+  "OrielPereira": "feira-frutas",
+  "FATURA PAGA Itau Uniclas": "cartao_uniclass"
+}
+```
+
+- A **chave** é um trecho do nome da transação (case-sensitive, parcial)
+- O **valor** é a categoria que será atribuída
+
+**Quando usar:**
+- Estabelecimentos recorrentes que a IA classifica errado
+- Nomes ambíguos que precisam de regra fixa
+- Qualquer transação que você queira forçar uma categoria específica
+
+> As regras têm prioridade sobre a classificação por IA. Adicione novas entradas sempre que identificar um padrão não categorizado corretamente.
+
+---
 
 Se `DIACONO_CONFIG_SOURCE` não for definido, a biblioteca tenta usar o S3 quando `DIACONO_S3_BUCKET` estiver configurado. Se o download falhar, ela usa os arquivos locais empacotados em `resource/` como fallback.
 
 Os arquivos baixados ficam em cache em `~/.cache/diacono-ia/`. Para mudar esse diretório, use `DIACONO_CONFIG_CACHE_DIR`.
 
 copiar arquivos para S3:
-```aws s3 cp src/diacono_categ/resource/ s3://medalion-cust/diacono_ia/resource/ --recursive --exclude "*" --include "*.json"
+```
+aws s3 cp src/diacono_categ/resource/ s3://medalion-cust/diacono_ia/resource/ --recursive --exclude "*" --include "*.json"
 ```
 
 para criar no container pacote diacono-categ
