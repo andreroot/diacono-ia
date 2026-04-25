@@ -20,7 +20,7 @@ def _cache_dir() -> Path:
 
 
 def _local_resource_path(filename: str) -> Path:
-	print(DEFAULT_LOCAL_RESOURCE_DIR)
+	# print(DEFAULT_LOCAL_RESOURCE_DIR)
 	return DEFAULT_LOCAL_RESOURCE_DIR / filename
 
 
@@ -108,6 +108,6 @@ def get_config_file_path(filename: str) -> Path:
 
 def load_json_config(filename: str) -> dict[str, Any]:
 	config_path = get_config_file_path(filename)
-	print(f"Carregando configuracao de: {config_path}")
+	# print(f"Carregando configuracao de: {config_path}")
 	with config_path.open("r", encoding="utf-8") as file_obj:
 		return json.load(file_obj)
